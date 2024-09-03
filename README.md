@@ -22,7 +22,7 @@ This project implements a Merkle-based airdrop system using an ERC20 token. It i
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/merkle-airdrop.git
+   git clone https://github.com/Michael-Nwachukwu/merkle-airdrop.git
    cd merkle-airdrop
    ```
 
