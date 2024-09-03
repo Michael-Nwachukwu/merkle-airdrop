@@ -1,5 +1,3 @@
-Here's a detailed markdown for a README file that includes explanations on how to set up and run your Hardhat project, run the merkle.ts script, deploy the contract, and generate proofs:
-
 # Merkle Airdrop Project
 
 This project implements a Merkle-based airdrop system using an ERC20 token. It includes a Hardhat setup for deploying the smart contract, a TypeScript script for generating the Merkle tree and proofs, and a Solidity contract for managing the airdrop.
@@ -39,10 +37,10 @@ This project implements a Merkle-based airdrop system using an ERC20 token. It i
 
 3. Create a `.env` file in the root directory and add the following:
    ```
-   INFURA_API_KEY=your_infura_project_id
+   ETHERSCAN_API_KEY=your_etherscan_project_id
    PRIVATE_KEY=your_private_key
    ```
-   Replace `your_infura_project_id` with your Infura project ID and `your_private_key` with the private key of the Ethereum account you want to use for deployment.
+   Replace `your_etherscan_project_id` with your Etherscan project ID and `your_private_key` with the private key of the evm account you want to use for deployment.
 
 4. Update the `hardhat.config.ts` file to include network configurations. Here's a basic setup for deploying to the Sepolia testnet:
 
