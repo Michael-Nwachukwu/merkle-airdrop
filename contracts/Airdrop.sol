@@ -12,13 +12,13 @@ import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 contract MerkleAirdrop {
 
     bytes32 public merkleRoot;
-    address token;
+    address public token;
     address owner;
     
     constructor(address _tokenAddress, bytes32 _merkleRoot) {
         token = _tokenAddress;
         merkleRoot = _merkleRoot;
-        owner == msg.sender;
+        owner = msg.sender;
     }
     
     mapping(address => bool) public hasClaimed;
@@ -44,6 +44,8 @@ contract MerkleAirdrop {
 
         require(MerkleProof.verify(proof, merkleRoot, leaf), "Invalid proof");
 
+        hasClaimed[msg.sender] = true; // Mark address as having claimed
+
         IERC20(token).transfer(msg.sender, _amount);
         emit AirdropClaimed(msg.sender, _amount);
 
@@ -55,8 +57,13 @@ contract MerkleAirdrop {
     }
 
     // Function to withdraw remaining airdrop tokens. callable only by owner.
-    function withdrawTokens(uint256 amount) external onlyOwner {
-        require(IERC20(token).transfer(msg.sender, amount), "Withdraw failed.");
+    function withdrawTokens(uint256 _amount) external onlyOwner {
+        // uint256 balance = IERC20(token).balanceOf(address(this));
+        require(IERC20(token).transfer(msg.sender, _amount), "Withdraw failed.");
+    }
+
+    function getContractBalance() external view onlyOwner returns(uint256) {
+        return IERC20(token).balanceOf(address(this));
     }
 
 }
